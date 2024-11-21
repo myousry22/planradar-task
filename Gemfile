@@ -31,6 +31,7 @@ gem "bootsnap", require: false
 gem 'active_model_serializers', '~> 0.10.14'
 gem 'redis'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 
 
 
