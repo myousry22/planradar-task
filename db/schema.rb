@@ -18,12 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_175537) do
     t.string "title", null: false
     t.text "description", null: false
     t.integer "assigned_user_id", null: false
-    t.date "due_date", null: false
+    t.date "due_date"
     t.integer "status_id", default: 0, null: false
     t.integer "progress", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assigned_user_id", "title"], name: "index_tickets_on_assigned_user_id_and_title", unique: true
+    t.index ["assigned_user_id", "due_date"], name: "index_tickets_on_assigned_user_id_and_due_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_175537) do
     t.string "time_zone", default: "Europe/Vienna", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["send_due_date_reminder", "due_date_reminder_time"], name: "idx_on_send_due_date_reminder_due_date_reminder_tim_59cc3e00e8"
   end
 
   add_foreign_key "tickets", "users", column: "assigned_user_id"

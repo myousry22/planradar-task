@@ -4,7 +4,7 @@ class CreateTickets < ActiveRecord::Migration[7.1]
       t.string :title, null: false
       t.text :description, null: false
       t.integer :assigned_user_id, null: false
-      t.date :due_date, null: false
+      t.date :due_date
       t.integer :status_id, null: false, default: 0
       t.integer :progress, null: false, default: 0
 
@@ -12,7 +12,7 @@ class CreateTickets < ActiveRecord::Migration[7.1]
     end
 
     add_foreign_key :tickets, :users, column: :assigned_user_id
-    add_index :tickets, [:assigned_user_id, :title], unique: true, name: 'index_tickets_on_assigned_user_id_and_title'
+    add_index :tickets, [:assigned_user_id, :due_date]
 
   end
 end

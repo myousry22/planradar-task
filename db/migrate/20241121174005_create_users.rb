@@ -10,5 +10,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :users, [:send_due_date_reminder, :due_date_reminder_time]
   end
 end
