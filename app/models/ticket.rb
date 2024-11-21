@@ -5,13 +5,11 @@ class Ticket < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :assigned_user_id, presence: true
-  validates :due_date, presence: true
   validates :status_id, presence: true
   validates :progress, presence: true
-  validates :title, uniqueness: { scope: :assigned_user_id, message: "  there is another ticket with same title assigned to this user" }
   validate :due_date_validity
 
-  
+
   # Model Associations
   belongs_to :user, foreign_key: 'assigned_user_id'
 
@@ -31,7 +29,7 @@ class Ticket < ApplicationRecord
 
   private
   def due_date_validity
-    if due_date < Date.today
+    if due_date && due_date < Date.today
       errors.add(:due_date, "can't be in the past")
     end
   end
