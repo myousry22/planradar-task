@@ -1,6 +1,7 @@
 :concurrency: 5
 :queues:
   - default
+  - mailer
 
 :redis:
   url: redis://localhost:6379/0
