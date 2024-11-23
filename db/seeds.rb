@@ -16,6 +16,14 @@ users = []
   )
 end
 
+current_user = User.create!(
+  name: "User 15",
+  email: "user115@example.com",
+  send_due_date_reminder: true,
+  due_date_reminder_interval: 0,
+  due_date_reminder_time: Time.now + 10.minutes,
+  time_zone: "Vienna" )
+
 puts "Created #{users.count} users."
 
 # Create Tickets for each User
@@ -31,5 +39,16 @@ users.each do |user|
     )
   end
 end
+
+
+
+current_ticket =  Ticket.create!(
+  title: "Ticket 15",
+  description: "Description for ticket 15 of user #{current_user}",
+  assigned_user_id: current_user.id,
+  due_date: Date.today,
+  status_id: rand(0..3),
+  progress: rand(0..100)
+)
 
 puts "Created #{Ticket.count} tickets."
