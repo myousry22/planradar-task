@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :send_due_date_reminder, inclusion: { in: [true, false] }
   validates :due_date_reminder_interval, presence: true
-  validates :time_zone, presence: true, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: "%{value} is not a valid time zone" }
+  validates :time_zone, presence: true, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name)}
   validates :due_date_reminder_time, presence: true, if: :send_due_date_reminder?
 
   # Model Associations
